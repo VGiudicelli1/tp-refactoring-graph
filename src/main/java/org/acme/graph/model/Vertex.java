@@ -47,12 +47,22 @@ public class Vertex {
 		this.outEdges = new ArrayList<Edge>();
 	}
 
+	@JsonIgnore
 	public List<Edge> getInEdges() {
 		return this.inEdges;
 	}
 
+	@JsonIgnore
 	public List<Edge> getOutEdges() {
 		return this.outEdges;
+	}
+
+	void AddInEdge(Edge in) {
+		this.inEdges.add(in);
+	}
+
+	void addOutEdge(Edge out) {
+		this.outEdges.add(out);
 	}
 
 	public String getId() {
