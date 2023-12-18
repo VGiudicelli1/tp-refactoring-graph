@@ -20,7 +20,7 @@ public class TestGraphFactory {
 		Vertex d = graph.createVertex(new Coordinate(1.0, 1.0), "d");
 
 		graph.createEdge(a, b, "ab");
-		graph.createEdge(c, c, "bc");
+		graph.createEdge(b, c, "bc");
 		graph.createEdge(a, d, "ad");
 
 		return graph;
