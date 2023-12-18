@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.acme.graph.model.Edge;
 import org.acme.graph.model.Graph;
 import org.acme.graph.model.Vertex;
 import org.geotools.data.DataStore;
@@ -89,11 +90,13 @@ public class GraphReader {
 
 		/* Création de l'arc pour le parcours en sens direct */
 		if (sens.equals(DOUBLE_SENS) || sens.equals(SENS_DIRECT)) {
-			graph.createEdge(source, target, id + "-direct");
+			Edge edge = graph.createEdge(source, target, id + "-direct");
+			edge.setGeometry(geometry);
 		}
 		/* Création de l'arc pour le parcours en sens opposé */
 		if (sens.equals(DOUBLE_SENS) || sens.equals(SENS_INVERSE)) {
-			graph.createEdge(target, source, id + "-reverse");
+			Edge edge = graph.createEdge(target, source, id + "-reverse");
+			edge.setGeometry(geometry.reverse());
 		}
 	}
 
