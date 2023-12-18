@@ -64,4 +64,16 @@ public class GraphTest {
 		assertEquals("ab (a->b)", result.get(0).toString());
 	}
 
+	@Test
+	public void testCreateVertexCreateEdge() {
+		Graph g = TestGraphFactory.createGraph01();
+		Vertex a = g.createVertex(new Coordinate(1.2, 3.4), "id_a");
+		Vertex b = g.createVertex(new Coordinate(1.2, 3.4), "id_b");
+		Edge ab = g.createEdge(a, b, "id_ab");
+		
+		Assert.assertEquals(a.getId(), "id_a");
+		Assert.assertEquals(b.getId(), "id_b");
+		Assert.assertEquals(ab.getId(), "id_ab");
+	}
+
 }
