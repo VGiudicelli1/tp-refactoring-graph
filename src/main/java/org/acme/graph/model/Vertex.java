@@ -38,13 +38,21 @@ public class Vertex {
 	 * dijkstra - indique si le sommet est visité
 	 */
 	private boolean visited;
-	
-	private List<Edge> inEdge;
-	private List<Edge> outEdge;
+
+	private List<Edge> inEdges;
+	private List<Edge> outEdges;
 
 	Vertex() {
-		this.inEdge = new ArrayList<Edge>();
-		this.outEdge = new ArrayList<Edge>();
+		this.inEdges = new ArrayList<Edge>();
+		this.outEdges = new ArrayList<Edge>();
+	}
+
+	public List<Edge> getInEdges() {
+		return this.inEdges;
+	}
+
+	public List<Edge> getOutEdges() {
+		return this.outEdges;
 	}
 
 	public String getId() {
