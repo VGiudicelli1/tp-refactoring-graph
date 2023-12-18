@@ -33,7 +33,7 @@ public class DijkstraRegressTest {
 
 	@Test
 	public void testABFound() {
-		List<Edge> path = finder.findPath(graph.findVertex("a"), graph.findVertex("b"));
+		List<Edge> path = finder.findPath(graph.findVertex("a"), graph.findVertex("b")).getEdges();
 		assertNotNull(path);
 		assertEquals(1, path.size());
 	}
@@ -46,7 +46,7 @@ public class DijkstraRegressTest {
 
 	@Test
 	public void testACFoundWithCorrectOrder() {
-		List<Edge> path = finder.findPath(graph.findVertex("a"), graph.findVertex("c"));
+		List<Edge> path = finder.findPath(graph.findVertex("a"), graph.findVertex("c")).getEdges();
 		assertNotNull(path);
 		assertEquals(2, path.size());
 

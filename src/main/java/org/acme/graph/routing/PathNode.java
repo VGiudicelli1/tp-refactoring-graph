@@ -43,5 +43,4 @@ public class PathNode {
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
-
 }
