@@ -14,22 +14,14 @@ public class PathTree {
 
 	private Map<Vertex, PathNode> nodes;
 
-	public PathTree() {
-		this.nodes = new HashMap<Vertex, PathNode>();
-	}
-
 	/**
 	 * Prépare le graphe pour le calcul du plus court chemin
 	 * 
 	 * @param source
 	 */
-	void initGraph(Graph graph, Vertex source) {
-		for (Vertex vertex : graph.getVertices()) {
-			PathNode node = this.getNode(vertex);
-			node.setCost(source == vertex ? 0.0 : Double.POSITIVE_INFINITY);
-			node.setReachingEdge(null);
-			node.setVisited(false);
-		}
+	PathTree(Graph graph, Vertex source) {
+		this.nodes = new HashMap<Vertex, PathNode>();
+		this.getNode(source).setCost(0.0);
 	}
 
 	/**
@@ -38,9 +30,9 @@ public class PathTree {
 	 * @param target
 	 * @return
 	 */
-	List<Edge> buildPath(Vertex target) {
+	List<Edge> getPath(Vertex target) {
 		List<Edge> result = new ArrayList<>();
-
+		
 		Edge current = this.getNode(target).getReachingEdge();
 		do {
 			result.add(current);
@@ -55,8 +47,15 @@ public class PathTree {
 		PathNode node = this.nodes.get(v);
 		if (node == null) {
 			node = new PathNode();
+			node.setCost(Double.POSITIVE_INFINITY);
+			node.setReachingEdge(null);
+			node.setVisited(false);
 			this.nodes.put(v, node);
 		}
 		return node;
+	}
+
+	boolean isReached(Vertex destination) {
+		return this.nodes.get(destination) != null && this.getNode(destination).getReachingEdge() != null;
 	}
 }

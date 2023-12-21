@@ -6,8 +6,8 @@ import org.acme.graph.errors.NotFoundException;
 import org.acme.graph.model.Edge;
 import org.acme.graph.model.Graph;
 import org.acme.graph.model.Vertex;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 /**
  * 
@@ -18,13 +18,13 @@ import org.apache.logging.log4j.Logger;
  */
 public class DijkstraPathFinder {
 
-	private static final Logger log = LogManager.getLogger(DijkstraPathFinder.class);
+	// private static final Logger log =
+	// LogManager.getLogger(DijkstraPathFinder.class);
 
 	private Graph graph;
 	private PathTree pathTree;
 
 	public DijkstraPathFinder(Graph graph) {
-		this.pathTree = new PathTree();
 		this.graph = graph;
 	}
 
@@ -36,18 +36,18 @@ public class DijkstraPathFinder {
 	 * @return
 	 */
 	public List<Edge> findPath(Vertex origin, Vertex destination) {
-		log.info("findPath({},{})...", origin, destination);
-		this.pathTree.initGraph(this.graph, origin);
+		// log.info("findPath({},{})...", origin, destination);
+		this.pathTree = new PathTree(this.graph, origin);
 		Vertex current;
 		PathNode destNode = this.pathTree.getNode(destination);
 		while ((current = findNextVertex()) != null) {
 			visit(current);
 			if (destNode.getReachingEdge() != null) {
-				log.info("findPath({},{}) : path found", origin, destination);
-				return this.pathTree.buildPath(destination);
+				// log.info("findPath({},{}) : path found", origin, destination);
+				return this.pathTree.getPath(destination);
 			}
 		}
-		log.info("findPath({},{}) : path not found", origin, destination);
+		// log.info("findPath({},{}) : path not found", origin, destination);
 		throw new NotFoundException(String.format("Path not found from '%s' to '%s'", origin, destination));
 	}
 
@@ -57,7 +57,7 @@ public class DijkstraPathFinder {
 	 * @param vertex
 	 */
 	private void visit(Vertex vertex) {
-		log.trace("visit({})", vertex);
+		// log.trace("visit({})", vertex);
 		List<Edge> outEdges = graph.getOutEdges(vertex);
 		PathNode node = this.pathTree.getNode(vertex);
 		/*
